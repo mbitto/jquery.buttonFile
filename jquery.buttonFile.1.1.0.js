@@ -1,13 +1,18 @@
 /**
  * jquery.buttonFile
  *
- * Version:     1.0.0
+ * Version:     1.1.0
  * Last Update: 2013/01/26
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  * Tested in Firefox and Chrome
  *
  * Use a simple link or button as an <input type='file'> to open the default file browser
+ *
+ *
+ * Changelog:
+ *
+ * version 1.1.0 -> Added 'multiple' and 'accept' options
  *
  *
  */
@@ -17,13 +22,23 @@
 
     var init = function(options) {
 
-        options = $.extend({}, options);
+        options = $.extend({
+            multiple: false,
+            accept : ''
+        }, options);
 
         // Initialize all buttonFile elements
         this.each(function(i, el){
 
             var $el = $(el),
                 $hiddenInputFile = $('<input type="file" style="display:none">');
+
+            if(options.multiple){
+                $hiddenInputFile.attr('multiple', 'multiple');
+            }
+            if(options.accept !== ''){
+                $hiddenInputFile.attr('accept', options.accept);
+            }
 
             $el.data('jquery_buttonFile', ++counter);
             $hiddenInputFile.addClass('jquery_buttonFile_' + counter);

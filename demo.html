@@ -10,11 +10,11 @@
         <p><a id="link1"href="#">I'm a link</a></p>
         <p><button id="btn2">I'm another button</button></p>
     </form>
-    <script type="text/javascript" src="jquery.buttonFile.1.0.0.js"></script>
+    <script type="text/javascript" src="jquery.buttonFile.1.1.0.js"></script>
     <script type="text/javascript">
         $("#btn1").buttonFile();
         $("#link1").buttonFile();
-        $("#btn2").buttonFile();
+        $("#btn2").buttonFile({multiple:true, accept:'image/*'});
     </script>
 </body>
 </html>
