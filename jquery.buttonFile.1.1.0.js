@@ -23,8 +23,10 @@
     var init = function(options) {
 
         options = $.extend({
+            name: 'file',
             multiple: false,
-            accept : ''
+            accept : '',
+            onChange :$.noop
         }, options);
 
         // Initialize all buttonFile elements
@@ -35,7 +37,12 @@
 
             if(options.multiple){
                 $hiddenInputFile.attr('multiple', 'multiple');
+                $hiddenInputFile.attr('name', options.name + '[]');
             }
+            else{
+                $hiddenInputFile.attr('name', options.name);
+            }
+
             if(options.accept !== ''){
                 $hiddenInputFile.attr('accept', options.accept);
             }
@@ -43,6 +50,9 @@
             $el.data('jquery_buttonFile', ++counter);
             $hiddenInputFile.addClass('jquery_buttonFile_' + counter);
             $el.after($hiddenInputFile);
+            $hiddenInputFile.on('change', function(){
+                options.onChange(this.files);
+            });
         });
 
         $(this).on('click', function(e){
