@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/foundation/5.0.2/css/foundation.min.css">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <title>Demo</title>
 </head>
 <body>
     <form>
-        <p><button class="btn1">I'm a button</button></p>
-        <p><a class="btn1"href="#">I'm a link</a></p>
-        <p><button id="btn2">I'm another button</button></p>
+        <div class="row">
+            <div class="large-4 columns">
+                <button class="button btn1">Single selection button</button>
+            </div>
+            <div class="small-4 columns">
+                <p><a class="link"href="#">Multiple selection link</a></p>
+            </div>
+            <div class="large-4 columns">
+                <button class="button btn2">Multiple selection button accepting only images</button>
+            </div>
+        </div>
     </form>
     <script type="text/javascript" src="jquery.buttonFile.1.1.0.js"></script>
     <script type="text/javascript">
         $(".btn1").buttonFile({onChange:function(data){
             console.log(data);
         }});
-        $("#btn2").buttonFile({multiple:true, accept:'image/*', onChange:function(data){
+        $(".link").buttonFile({multiple:true, onChange:function(data){
+            console.log(data);
+        }});
+        $(".btn2").buttonFile({multiple:true, accept:'image/*', onChange:function(data){
             console.log(data);
         }});
     </script>
